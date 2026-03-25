@@ -13,5 +13,5 @@ echo "{\"ts\": \"$TIMESTAMP\", \"node\": \"NODE-L1-PDX\", \"status\": \"ACTIVE\"
 
 # 3. Asset Settlement
 git add clearing_rules.json ${HOME}/stasis-flow-facility/axx-engine/axx_telemetry.log auto_commit.sh
-git commit -m "NODE-L1-PDX: Yield Collected - Waterfall Verified"
+git commit -m "NODE-L1-PDX: Pixel Mints Active - Yield Multiplied - Waterfall Verified"
 git push origin main

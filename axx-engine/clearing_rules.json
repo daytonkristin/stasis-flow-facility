@@ -12,3 +12,8 @@
   },
   "status": "LIVE-READY"
 }
+  , "mint_config": {
+    "pixel_density_threshold": "0.98_SIGMA",
+    "mint_yield_multiplier": "1.5x",
+    "active_mints": ["PM-01-LEVO", "PM-02-LEVO"]
+  }
