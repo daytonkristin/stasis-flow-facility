@@ -1,8 +1,14 @@
 {
-  "exchange_name": "Axiom-AXX-Private",
-  "operator": "OP-KD-24",
-  "node_id": "NODE-L1-PDX",
-  "version": "1.1-Hardened",
-  "settlement": "T-Zero-Instant",
-  "contract": "Subterranean-Compute-V1"
+  "protocol": "Stasis-Flow-v1.0",
+  "node": "NODE-L1-PDX",
+  "service_manifest": {
+    "validation_yield": "0.0001_PER_HEARTBEAT",
+    "pass_through_fee": "0.05_PERCENT",
+    "payout_threshold": "10.00_USD"
+  },
+  "waterfall": {
+    "primary": "SteadyPathPay_Vault",
+    "secondary": "AXX_Reserve"
+  },
+  "status": "LIVE-READY"
 }
