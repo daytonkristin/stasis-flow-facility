@@ -13,3 +13,13 @@ To https://github.com/daytonkristin/stasis-flow-facility.git
    060a32e..7109993  main -> main
 nohup: ignoring input
 {"ts": "2026-03-25T20:03:59Z", "node": "NODE-L1-PDX", "status": "ACTIVE"}
+warning: in the working copy of 'axx-engine/axx_telemetry.log', LF will be replaced by CRLF the next time Git touches it
+[main 9eab44d] NODE-L1-PDX: Integrity Verified - State Settled
+ 1 file changed, 7 insertions(+)
+To https://github.com/daytonkristin/stasis-flow-facility.git
+   7109993..9eab44d  main -> main
+nohup: ignoring input
+grep: clearing_rules.json: No such file or directory
+CRITICAL: Asset Logic Corrupted. Aborting Settlement.
+nohup: ignoring input
+{"ts": "2026-03-25T20:06:26Z", "node": "NODE-L1-PDX", "status": "ACTIVE"}

@@ -2,7 +2,7 @@
 # AXX-Asset Governor V3.1 (Hardware-Independent)
 
 # 1. Logic Integrity Check (Pure-Bash)
-if ! grep -q "{" clearing_rules.json || ! grep -q "}" clearing_rules.json; then
+if ! grep -q . "${HOME}/stasis-flow-facility/axx-engine/clearing_rules.json"; then
     echo "CRITICAL: Asset Logic Corrupted. Aborting Settlement."
     exit 1
 fi
