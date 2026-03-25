@@ -2,3 +2,5 @@
 {"ts": "2026-03-25T19:27:39Z", "node": "NODE-L1-PDX", "status": "ACTIVE"}
 {"ts": "2026-03-25T19:29:01Z", "node": "NODE-L1-PDX", "status": "ACTIVE"}
 {"ts": "2026-03-25T19:32:12Z", "node": "NODE-L1-PDX", "status": "ACTIVE"}
+{"ts": "2026-03-25T19:42:16Z", "node": "NODE-L1-PDX", "status": "ACTIVE"}
+{"ts": "2026-03-25T19:51:50Z", "node": "NODE-L1-PDX", "status": "RE-INITIALIZED"}

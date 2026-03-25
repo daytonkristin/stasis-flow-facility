@@ -9,9 +9,9 @@ fi
 
 # 2. Financial/Resource Telemetry
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-echo "{\"ts\": \"$TIMESTAMP\", \"node\": \"NODE-L1-PDX\", \"status\": \"ACTIVE\"}" >> axx_telemetry.log
+echo "{\"ts\": \"$TIMESTAMP\", \"node\": \"NODE-L1-PDX\", \"status\": \"ACTIVE\"}" >> ${HOME}/stasis-flow-facility/axx-engine/axx_telemetry.log
 
 # 3. Asset Settlement
-git add clearing_rules.json axx_telemetry.log auto_commit.sh
+git add clearing_rules.json ${HOME}/stasis-flow-facility/axx-engine/axx_telemetry.log auto_commit.sh
 git commit -m "NODE-L1-PDX: Integrity Verified - State Settled"
 git push origin main
