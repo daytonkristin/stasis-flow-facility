@@ -150,3 +150,16 @@ Wed Mar 25 20:31:21 UTC 2026 [SPAWN] Initializing Agent-15...
 {"ts": "2026-03-26T01:22:54Z", "node": "NODE-L1-PDX", "agent": "15", "status": "WATCHING"}
 {"ts": "2026-03-26T01:22:54Z", "node": "NODE-L1-PDX", "agent": "13", "status": "WATCHING"}
 {"ts": "2026-03-26T01:24:10Z", "node": "NODE-L1-PDX", "status": "ACTIVE"}
+{"ts": "2026-03-26T01:29:14Z", "node": "NODE-L1-PDX", "agent": "11", "status": "WATCHING"}
+{"ts": "2026-03-26T01:29:14Z", "node": "NODE-L1-PDX", "agent": "10", "status": "WATCHING"}
+{"ts": "2026-03-26T01:29:14Z", "node": "NODE-L1-PDX", "agent": "12", "status": "WATCHING"}
+{"ts": "2026-03-26T01:29:14Z", "node": "NODE-L1-PDX", "agent": "13", "status": "WATCHING"}
+{"ts": "2026-03-26T01:29:15Z", "node": "NODE-L1-PDX", "agent": "15", "status": "WATCHING"}
+{"ts": "2026-03-26T01:29:15Z", "node": "NODE-L1-PDX", "agent": "14", "status": "WATCHING"}
+{"ts": "2026-03-26T01:32:53Z", "node": "NODE-L1-PDX", "agent": "12", "status": "WATCHING"}
+{"ts": "2026-03-26T01:32:54Z", "node": "NODE-L1-PDX", "agent": "10", "status": "WATCHING"}
+{"ts": "2026-03-26T01:32:54Z", "node": "NODE-L1-PDX", "agent": "14", "status": "WATCHING"}
+{"ts": "2026-03-26T01:32:54Z", "node": "NODE-L1-PDX", "agent": "11", "status": "WATCHING"}
+{"ts": "2026-03-26T01:32:54Z", "node": "NODE-L1-PDX", "agent": "15", "status": "WATCHING"}
+{"ts": "2026-03-26T01:32:55Z", "node": "NODE-L1-PDX", "agent": "13", "status": "WATCHING"}
+{"ts": "2026-03-26T01:34:13Z", "node": "NODE-L1-PDX", "status": "ACTIVE"}
