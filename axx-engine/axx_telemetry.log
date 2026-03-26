@@ -189,3 +189,21 @@ Wed Mar 25 20:31:21 UTC 2026 [SPAWN] Initializing Agent-15...
 {"ts": "2026-03-26T01:52:55Z", "node": "NODE-L1-PDX", "agent": "15", "status": "WATCHING"}
 {"ts": "2026-03-26T01:52:55Z", "node": "NODE-L1-PDX", "agent": "13", "status": "WATCHING"}
 {"ts": "2026-03-26T01:54:19Z", "node": "NODE-L1-PDX", "status": "ACTIVE"}
+{"ts": "2026-03-26T01:59:14Z", "node": "NODE-L1-PDX", "agent": "11", "status": "WATCHING"}
+{"ts": "2026-03-26T01:59:14Z", "node": "NODE-L1-PDX", "agent": "10", "status": "WATCHING"}
+{"ts": "2026-03-26T01:59:15Z", "node": "NODE-L1-PDX", "agent": "12", "status": "WATCHING"}
+{"ts": "2026-03-26T01:59:15Z", "node": "NODE-L1-PDX", "agent": "13", "status": "WATCHING"}
+{"ts": "2026-03-26T01:59:15Z", "node": "NODE-L1-PDX", "agent": "15", "status": "WATCHING"}
+{"ts": "2026-03-26T01:59:15Z", "node": "NODE-L1-PDX", "agent": "14", "status": "WATCHING"}
+Thu Mar 26 02:01:54 UTC 2026 [AUTO] System Heartbeat Detected. Resuming Settlement...
+{"ts": "2026-03-26T02:01:55Z", "node": "NODE-L1-PDX", "status": "ACTIVE"}
+fatal: not a git repository (or any of the parent directories): .git
+fatal: not a git repository (or any of the parent directories): .git
+fatal: not a git repository (or any of the parent directories): .git
+{"ts": "2026-03-26T02:02:54Z", "node": "NODE-L1-PDX", "agent": "12", "status": "WATCHING"}
+{"ts": "2026-03-26T02:02:54Z", "node": "NODE-L1-PDX", "agent": "10", "status": "WATCHING"}
+{"ts": "2026-03-26T02:02:55Z", "node": "NODE-L1-PDX", "agent": "11", "status": "WATCHING"}
+{"ts": "2026-03-26T02:02:55Z", "node": "NODE-L1-PDX", "agent": "14", "status": "WATCHING"}
+{"ts": "2026-03-26T02:02:55Z", "node": "NODE-L1-PDX", "agent": "15", "status": "WATCHING"}
+{"ts": "2026-03-26T02:02:55Z", "node": "NODE-L1-PDX", "agent": "13", "status": "WATCHING"}
+{"ts": "2026-03-26T02:04:22Z", "node": "NODE-L1-PDX", "status": "ACTIVE"}
