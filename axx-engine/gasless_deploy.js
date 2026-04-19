@@ -1,49 +1,39 @@
-const { ethers } = require('ethers');
+const { Coinbase, Wallet } = require('@coinbase/coinbase-sdk');
 const fs = require('fs');
 
 async function main() {
-    console.log("🚀 Starting Direct-Auth Deployment...");
-
-    // 1. Load CDP Credentials
+  try {
     const keyData = JSON.parse(fs.readFileSync('cdp_key.json', 'utf8'));
+    const formattedKey = keyData.privateKey.replace(/\\n/g, '\n');
     
-    // 2. Setup RPC with your CDP API Key for Gas Coverage
-    // We use the Base Mainnet RPC with a Basic Auth header
-    const auth = Buffer.from(`${keyData.name}:${keyData.privateKey}`).toString('base64');
-    const provider = new ethers.JsonRpcProvider('https://mainnet.base.org', null, {
-        staticNetwork: true,
-        headers: { Authorization: `Basic ${auth}` }
+    Coinbase.configure({ apiKeyName: keyData.name, privateKey: formattedKey });
+
+    console.log("🛠️  Testing API Connection...");
+    
+    // Explicitly catching the create call to find the "Undefined" source
+    const wallet = await Wallet.create({ networkId: 'base-mainnet' }).catch(e => {
+        console.log("❌ SDK Internal Error Check:");
+        console.dir(e); // This will dump the full object so we can see the status code
+        throw new Error("SDK_CREATE_FAILED");
     });
-
-    // 3. Extract Key from wallet_secret.txt
-    const raw = fs.readFileSync('wallet_secret.txt', 'utf8').trim();
-    const hexKey = '0x' + Buffer.from(raw, 'base64').slice(-32).toString('hex');
-    const wallet = new ethers.Wallet(hexKey, provider);
     
-    console.log(`✅ Signer: ${wallet.address}`);
+    console.log("✅ Wallet Created: " + await wallet.getAddress());
 
-    // 4. Contract Logic
-    const bytecode = fs.readFileSync('Contract_Bytecode.bin', 'utf8').trim();
-    const abi = JSON.parse(fs.readFileSync('Contract_ABI.json', 'utf8'));
-    const factory = new ethers.ContractFactory(abi, bytecode, wallet);
+    const contract = await wallet.deployContract({
+      bytecode: fs.readFileSync('Contract_Bytecode.bin', 'utf8').trim(),
+      abi: JSON.parse(fs.readFileSync('Contract_ABI.json', 'utf8')),
+      args: ["0xa97684ead0e45119da10d2ac23a5f0912a50f40d"]
+    }, { gasless: true });
 
-    console.log("⛽ Broadcasting via CDP-Auth RPC...");
+    console.log("⏳ Confirmation pending...");
+    await contract.wait();
+    console.log("✅ LIVE AT: " + contract.getAddress());
 
-    // Hardcode gas values to ensure the RPC sees the request
-    const contract = await factory.deploy("0xa97684ead0e45119da10d2ac23a5f0912a50f40d", {
-        gasLimit: 2000000,
-        gasPrice: ethers.parseUnits('0.1', 'gwei')
-    });
-
-    console.log(`⏳ TX Sent: ${contract.deploymentTransaction().hash}`);
-    await contract.waitForDeployment();
-    
-    console.log("-----------------------------------------");
-    console.log("✅ SUCCESS!");
-    console.log(`📜 ADDRESS: ${await contract.getAddress()}`);
-    console.log("-----------------------------------------");
+  } catch (err) {
+    if (err.message !== "SDK_CREATE_FAILED") {
+        console.error("❌ Final Error Detail:", err.message);
+    }
+  }
 }
 
-main().catch((err) => {
-    console.error("❌ ERROR:", err.message);
-});
+main();
