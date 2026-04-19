@@ -1,39 +1,33 @@
-const { ethers } = require('ethers');
+const { Coinbase, Wallet } = require('@coinbase/coinbase-sdk');
 const fs = require('fs');
 
 async function main() {
   try {
-    const RPC_URL = "https://api.developer.coinbase.com/rpc/v1/base/zWsy2Kloj2Ycn4VNIGpEvwOFFKoSY6Em";
-    const provider = new ethers.JsonRpcProvider(RPC_URL);
+    console.log("📡 Initializing CDP Final Launch...");
+    Coinbase.configureFromJson({ filePath: 'cdp_key.json' });
 
-    const raw = fs.readFileSync('wallet_secret.txt', 'utf8').trim();
-    const hexKey = '0x' + Buffer.from(raw, 'base64').slice(-32).toString('hex');
-    const wallet = new ethers.Wallet(hexKey, provider);
+    // Creates the Smart Account needed to trigger the Paymaster
+    const wallet = await Wallet.create({ networkId: 'base-mainnet' });
+    console.log(`✅ Smart Account Prepared: ${await wallet.getAddress()}`);
 
-    const abi = JSON.parse(fs.readFileSync('Contract_ABI.json', 'utf8'));
-    const bytecode = fs.readFileSync('Contract_Bytecode.bin', 'utf8').trim();
-    const factory = new ethers.ContractFactory(abi, bytecode, wallet);
+    console.log("🚀 Requesting Sponsored Deployment of AxionFlashEngine...");
+    const contract = await wallet.deployContract({
+      bytecode: fs.readFileSync('Contract_Bytecode.bin', 'utf8').trim(),
+      abi: JSON.parse(fs.readFileSync('Contract_ABI.json', 'utf8')),
+      args: ["0xa97684ead0e45119da10d2ac23a5f0912a50f40d"] // Base Mainnet Agave Pool
+    }, { gasless: true });
 
-    console.log("🚀 Broadcasting with Manual Gas (Testing Paymaster Pickup)...");
-
-    // We manually set gas limits to bypass the 'estimateGas' failure
-    const contract = await factory.deploy("0xa97684ead0e45119da10d2ac23a5f0912a50f40d", {
-      gasLimit: 1000000, 
-      maxFeePerGas: ethers.parseUnits('0.1', 'gwei'),
-      maxPriorityFeePerGas: ethers.parseUnits('0.1', 'gwei')
-    });
-
-    console.log("⏳ TX Sent:", contract.deploymentTransaction().hash);
-    await contract.waitForDeployment();
-    console.log("🎉 SUCCESS! ADDRESS:", await contract.getAddress());
+    console.log("⏳ Bundler is processing... (Using $100 Credits)");
+    await contract.wait();
+    
+    console.log("\n" + "=".repeat(41));
+    console.log("🎉 DEPLOYMENT SUCCESSFUL!");
+    console.log(`📜 ADDRESS: ${contract.getAddress()}`);
+    console.log("=".repeat(41));
 
   } catch (err) {
-    if (err.message.includes("insufficient funds")) {
-       console.error("❌ Paymaster rejected standard transaction.");
-       console.log("💡 Last Resort: We must wait for the SDK 429 to clear to use the Smart Account flow.");
-    } else {
-       console.error("❌ Error:", err.shortMessage || err.message);
-    }
+    console.error("❌ Launch Failed.");
+    console.error("Reason:", err.apiMessage || err.message);
   }
 }
 main();
